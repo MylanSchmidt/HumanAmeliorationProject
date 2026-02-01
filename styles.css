@@ -221,6 +221,13 @@ input:focus, textarea:focus{outline:3px solid rgba(110,231,255,.35); border-colo
   .mobile-bar{display:block}
   .quick-exit{top:auto; bottom:84px; right:12px}
   .header .container{padding:14px 20px}
+  
+  /* Apply quick-exit safe area handling only on mobile */
+  @supports (padding: max(0px)) {
+    .quick-exit {
+      bottom: max(84px, calc(84px + env(safe-area-inset-bottom)));
+    }
+  }
 }
 
 /* Additional iPhone/small mobile optimizations */
@@ -297,9 +304,5 @@ input:focus, textarea:focus{outline:3px solid rgba(110,231,255,.35); border-colo
   
   .mobile-bar {
     padding-bottom: max(10px, env(safe-area-inset-bottom));
-  }
-  
-  .quick-exit {
-    bottom: max(84px, calc(84px + env(safe-area-inset-bottom)));
   }
 }
