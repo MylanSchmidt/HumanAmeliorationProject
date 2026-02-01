@@ -222,3 +222,84 @@ input:focus, textarea:focus{outline:3px solid rgba(110,231,255,.35); border-colo
   .quick-exit{top:auto; bottom:84px; right:12px}
   .header .container{padding:14px 20px}
 }
+
+/* Additional iPhone/small mobile optimizations */
+@media (max-width: 480px) {
+  body {
+    font-size: 16px; /* Prevent iOS zoom on input focus */
+  }
+  
+  .logo {
+    max-width: 240px;
+  }
+  
+  h1 {
+    font-size: 32px !important;
+  }
+  
+  .lead {
+    font-size: 16px;
+  }
+  
+  .btn {
+    padding: 14px 18px;
+    font-size: 16px;
+    min-height: 44px; /* iOS recommended touch target */
+  }
+  
+  .btn-small {
+    padding: 12px 14px;
+    font-size: 15px;
+    min-height: 44px;
+  }
+  
+  .card {
+    padding: 16px;
+  }
+  
+  .hero {
+    padding: 24px 0 18px;
+  }
+  
+  .section {
+    padding: 24px 0;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+  
+  /* Ensure text inputs don't zoom on focus in iOS */
+  input, textarea {
+    font-size: 16px;
+  }
+}
+
+/* iOS-specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* Fix iOS input zoom */
+  input, textarea, select {
+    font-size: 16px;
+  }
+  
+  /* Fix iOS button rendering */
+  .btn {
+    -webkit-appearance: none;
+  }
+}
+
+/* Safe area insets for iPhone notch */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+  
+  .mobile-bar {
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+  
+  .quick-exit {
+    bottom: max(84px, calc(84px + env(safe-area-inset-bottom)));
+  }
+}
