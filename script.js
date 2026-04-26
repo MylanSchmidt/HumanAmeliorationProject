@@ -1,4 +1,3 @@
-/* Placeholder-only JS. Safe defaults. */
 (function(){
   // year
   var y = document.getElementById('year');
@@ -11,15 +10,37 @@
     }
   });
 
-  // Fake form submit message (since this is a placeholder page)
-  window.HAPLanding = {
-    fakeSubmit: function(evt){
-      if (evt && evt.preventDefault) evt.preventDefault();
-      var note = document.getElementById('formNote');
-      if (note) {
-        note.textContent = 'Thanks — this is a placeholder page. Please email or call us for now.';
+  var form = document.getElementById('contactForm');
+  var note = document.getElementById('formNote');
+
+  if (form && note) {
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      note.textContent = 'Sending...';
+
+      var submitButton = form.querySelector('button[type="submit"]');
+      if (submitButton) submitButton.disabled = true;
+
+      try {
+        var formData = new FormData(form);
+        var response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+
+        var result = await response.json();
+
+        if (response.ok && result.success) {
+          note.textContent = 'Thanks! Your message has been sent.';
+          form.reset();
+        } else {
+          note.textContent = result.message || 'Something went wrong. Please try again.';
+        }
+      } catch (error) {
+        note.textContent = 'Unable to send right now. Please try again later.';
+      } finally {
+        if (submitButton) submitButton.disabled = false;
       }
-      return false;
-    }
-  };
+    });
+  }
 })();
