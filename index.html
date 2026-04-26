@@ -150,8 +150,12 @@
 
           <div class="card">
             <h3 class="card-title">Message us</h3>
-            <p class="card-text">This form can be wired up later (Web3Forms, Formspree, etc.).</p>
-            <form class="form" onsubmit="return window.HAPLanding && window.HAPLanding.fakeSubmit(event)">
+            <p class="card-text">Send us a message and we’ll get back to you as soon as we can.</p>
+            <form class="form" id="contactForm">
+              <input type="hidden" name="access_key" value="c02fbaaf-ca55-47ff-9776-2975224dd4a4" />
+              <input type="hidden" name="subject" value="New message from Human Amelioration Project website" />
+              <input type="hidden" name="from_name" value="Human Amelioration Project Website" />
+
               <label>
                 <span>Name</span>
                 <input name="name" autocomplete="name" required />
@@ -164,7 +168,7 @@
                 <span>Message</span>
                 <textarea name="message" rows="4" required></textarea>
               </label>
-              <button class="btn btn-primary" type="submit">Send (Placeholder)</button>
+              <button class="btn btn-primary" type="submit">Send Message</button>
               <p class="micro subtle" id="formNote" role="status" aria-live="polite"></p>
             </form>
           </div>
