@@ -3,7 +3,7 @@
 This is a simple, professional placeholder site you can deploy on **GitHub Pages**.
 
 ## Quick edits
-- Phone number: search for `775) 555-0100` and `+17755550100`
+- Phone number: search for `775) 502-0102` and `+17755020102`
 - Email: search for `info@humanameliorationproject.org`
 - Donation: in `index.html`, replace the `Donate (Coming Soon)` button link when ready
 
