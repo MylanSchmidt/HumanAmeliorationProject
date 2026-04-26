@@ -14,8 +14,38 @@
   var note = document.getElementById('formNote');
 
   if (form && note) {
+    var nameInput = form.querySelector('input[name="name"]');
+    var emailInput = form.querySelector('input[name="email"]');
+    var messageInput = form.querySelector('textarea[name="message"]');
+    var botcheck = form.querySelector('input[name="botcheck"]');
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
+      note.textContent = '';
+
+      if (botcheck && botcheck.checked) {
+        note.textContent = 'Unable to send message.';
+        return;
+      }
+
+      if (!nameInput.value.trim()) {
+        note.textContent = 'Please enter your name.';
+        nameInput.focus();
+        return;
+      }
+
+      if (!emailInput.value.trim() || !emailInput.checkValidity()) {
+        note.textContent = 'Please enter a valid email address.';
+        emailInput.focus();
+        return;
+      }
+
+      if (!messageInput.value.trim() || messageInput.value.trim().length < 10) {
+        note.textContent = 'Please enter a message of at least 10 characters.';
+        messageInput.focus();
+        return;
+      }
+
       note.textContent = 'Sending...';
 
       var submitButton = form.querySelector('button[type="submit"]');
